@@ -1,0 +1,136 @@
+@startuml
+title Model Abstract Factory SystemFile
+skinparam classAttributeIconSize 0
+
+class user.FileSystemJ
+
+interface filesystem.AbstractFile
+class filesystem.AbstractFileFactory {
+    + getFactory() : AbstractFileFactory
+    + createAbstractFile(String : fileName) : AbstractFile
+    + createDirectory(String : fileName, String : path) : AbstractFile
+    + readFile(AbstractFile : file) : String
+    + writeInFile(AbstractFile : file, String message, String mode) : boolean
+    + addFile(AbstractFile : directory, AbstractFile file) : boolean
+    + deleteFile(AbstractFile : fileName, AbstractFile directory) : boolean
+    + searchFile(String fileName) : AbstractFile
+}
+
+class filesystem.WinFactory {
+    ~ createAbstractFile(String : fileName) : AbstractFile
+    ~ createDirectory(String : fileName, String : path) : AbstractFile
+    ~ readFile(AbstractFile : file) : String
+    ~ writeInFile(AbstractFile : file, String message, String mode)  : boolean
+    ~ addFile(AbstractFile : directory, AbstractFile file) : boolean
+    ~ deleteFile(AbstractFile : fileName, AbstractFile directory)  : boolean
+    ~ searchFile(String fileName) : AbstractFile
+}
+
+class filesystem.LinuxFactory {
+    ~ createAbstractFile(String : fileName) : AbstractFile
+    ~ createDirectory(String : fileName, String : path) : AbstractFile
+    ~ readFile(AbstractFile : file) : String
+    ~ writeInFile(AbstractFile : file, String message, String mode)  : boolean
+    ~ addFile(AbstractFile : directory, AbstractFile file)  : boolean
+    ~ deleteFile(AbstractFile : fileName, AbstractFile directory) : boolean
+    ~ searchFile(String fileName) : AbstractFile
+}
+
+interface filesystem.AbstractFile {
+    ~read() : String
+    ~write(String : message, String mode)
+    ~add(AbstractFile file)
+    ~delete()
+    ~getFileName()
+    ~setFileName()
+    ~searchFile(String fileName) : AbstractFile
+}
+
+interface filesystem.AbstractOrdinaryFile {
+    ~read() : String
+    ~write(String : message, String mode)
+    ~add(AbstractFile file)
+    ~delete()
+    ~getFileName()
+    ~setFileName()
+    ~searchFile(String fileName) : AbstractFile
+}
+interface filesystem.AbstractDirectory {
+    ~read() : String
+    ~write(String : message, String mode)
+    ~add(AbstractFile file)
+    ~delete()
+    ~getFileName()
+    ~setFileName()
+    ~searchFile(String fileName) : AbstractFile
+}
+class filesystem.LinuxOrdinaryFile {
+    - String fileName
+    - String fileText
+    ~read() : String
+    ~write(String : message, String mode)
+    ~add(AbstractFile file)
+    ~delete()
+    ~getFileName()
+    ~setFileName()
+    ~searchFile(String fileName) : AbstractFile
+}
+class filesystem.WinOrdinaryFile {
+    - String fileName
+    - String fileText
+    ~read() : String
+    ~write(String : message, String mode)
+    ~add(AbstractFile file)
+    ~delete()
+    ~getFileName()
+    ~setFileName()
+    ~searchFile(String fileName) : AbstractFile
+}
+class filesystem.LinuxDirectory {
+    - String fileName
+    - String fileText
+    ~read() : String
+    ~write(String : message, String mode)
+    ~add(AbstractFile file)
+    ~delete()
+    ~getFileName()
+    ~setFileName()
+    ~searchFile(String fileName) : AbstractFile
+}
+class filesystem.WinDirectory {
+    - String fileName
+    - String fileText
+    ~read() : String
+    ~write(String : message, String mode)
+    ~add(AbstractFile file)
+    ~delete()
+    ~getFileName()
+    ~setFileName()
+    ~searchFile(String fileName) : AbstractFile
+}
+
+
+filesystem.AbstractFileFactory <-down- user.FileSystemJ : "uses"
+filesystem.AbstractFile <-down- user.FileSystemJ : "uses"
+
+filesystem.AbstractFile <|-down- filesystem.AbstractOrdinaryFile
+filesystem.AbstractFile <|-- filesystem.AbstractDirectory
+filesystem.AbstractFile "*" <--* "0:1" filesystem.AbstractDirectory : "files"
+
+filesystem.AbstractOrdinaryFile <|-down- filesystem.LinuxOrdinaryFile
+filesystem.AbstractOrdinaryFile <|-down- filesystem.WinOrdinaryFile
+
+filesystem.AbstractDirectory <|-- filesystem.LinuxDirectory
+filesystem.AbstractDirectory <|-- filesystem.WinDirectory
+
+filesystem.AbstractFileFactory <|-down- filesystem.WinFactory
+filesystem.AbstractFileFactory <|-down- filesystem.LinuxFactory
+
+/'
+filesystem.LinuxFactory .right.> filesystem.LinuxOrdinaryFile : "creates"
+filesystem.LinuxFactory .right.> filesystem.LinuxDirectory : "creates"
+
+filesystem.WinFactory .right.> filesystem.WinOrdinaryFile : "creates"
+filesystem.WinFactory .right.> filesystem.WinDirectory : "creates"
+'/
+@enduml
