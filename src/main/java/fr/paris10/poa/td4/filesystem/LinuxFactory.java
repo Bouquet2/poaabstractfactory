@@ -5,6 +5,9 @@ package fr.paris10.poa.td4.filesystem;
  */
 public class LinuxFactory implements AbstractFileFactory {
 
+    LinuxFactory() {
+    }
+
     @Override
     public File createFile(String fileName, String userName) {
         return new LinuxOrdinaryFile(fileName, userName);
@@ -38,5 +41,30 @@ public class LinuxFactory implements AbstractFileFactory {
     @Override
     public boolean write(File file, String content) {
         return file.write(content);
+    }
+
+    @Override
+    public String getName(File file) {
+        return file.getName();
+    }
+
+    @Override
+    public int getId(File file) {
+        return file.getId();
+    }
+
+    @Override
+    public int size(File file) {
+        return file.size();
+    }
+
+    @Override
+    public UserRegistry.User getUser(File file) {
+        return file.getUser();
+    }
+
+    @Override
+    public File.OpenMode getMode(File file) {
+        return file.getMode();
     }
 }

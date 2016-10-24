@@ -18,4 +18,14 @@ public interface AbstractFileFactory {
     String read(File file);
 
     boolean write(File file, String content);
+
+    String getName(File file);
+
+    int getId(File file);
+
+    int size(File file);
+
+    UserRegistry.User getUser(File file);
+
+    File.OpenMode getMode(File file);
 }
