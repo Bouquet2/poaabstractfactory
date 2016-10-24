@@ -1,87 +1,42 @@
 package fr.paris10.poa.td4.filesystem;
 
-import java.util.HashMap;
-
 /**
- * Created by vabouque on 17/10/2016.
+ * Created by vabouque on 24/10/2016.
  */
 public class LinuxFactory implements AbstractFileFactory {
-    static AbstractFileFactory instance;
-    private final String root = "/";
-    private HashMap<String, AbstractFile> fileTree;
-
-    private LinuxFactory() {
-        this.fileTree = new HashMap<String, AbstractFile>();
-    }
-
-    public AbstractFileFactory createFactory() {
-        if (instance == null) {
-            instance = new LinuxFactory();
-        }
-        return instance;
-    }
-
 
     @Override
-    //TODO createAbstractFile
-    public AbstractFile createAbstractFile(String fileName) {
-        return null;
+    public File createFile(String fileName, String userName) {
+        return new LinuxOrdinaryFile(fileName, userName);
     }
 
     @Override
-    //TODO createDirectory
-    public AbstractFile createDirectory(String directoryName, String directoryParentName) {
-        return null;
+    public File createDirectory(String directoryName, String userName) {
+        return new LinuxDirectory(directoryName, userName);
     }
 
     @Override
-    //TODO createAbstractFile
-    public AbstractFile createAbstractFile(String fileName, String directoryParentName) {
-        return null;
+    public boolean open(File file, File.OpenMode mode) {
+        return file.open(mode);
     }
 
     @Override
-    //TODO createDirectory
-    public AbstractFile createDirectory(String directoryName) {
-        return null;
+    public boolean close(File file) {
+        return file.close();
     }
 
     @Override
-    //TODO readFile
-    public String readFile(String fileName) {
-        return null;
+    public void rename(File file, String fileName) {
+        file.rename(fileName);
     }
 
     @Override
-    //TODO writeInFile
-    public void writeInFile(String fileName, String message) {
-
+    public String read(File file) {
+        return file.read();
     }
 
     @Override
-    //TODO deleteFile
-    public void deleteFile(String fileName) {
-
+    public boolean write(File file, String content) {
+        return file.write(content);
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        LinuxFactory that = (LinuxFactory) o;
-
-        if (root != null ? !root.equals(that.root) : that.root != null) return false;
-        return fileTree != null ? fileTree.equals(that.fileTree) : that.fileTree == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = root != null ? root.hashCode() : 0;
-        result = 31 * result + (fileTree != null ? fileTree.hashCode() : 0);
-        return result;
-    }
-
-
 }

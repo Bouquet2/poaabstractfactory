@@ -5,19 +5,17 @@ package fr.paris10.poa.td4.filesystem;
  */
 public interface AbstractFileFactory {
 
-    AbstractFile createAbstractFile(String fileName);
+    File createFile(String fileName, String userName);
 
-    AbstractFile createAbstractFile(String fileName, String directoryParentName);
+    File createDirectory(String directoryName, String userName);
 
-    AbstractFile createDirectory(String directoryName, String directoryParentName);
+    boolean open(File file, File.OpenMode mode);
 
-    AbstractFile createDirectory(String directoryName);
+    boolean close(File file);
 
-    String readFile(String fileName);
+    void rename(File file, String fileName);
 
-    void writeInFile(String fileName, String message);
+    String read(File file);
 
-    void deleteFile(String fileName);
-
-
+    boolean write(File file, String content);
 }
