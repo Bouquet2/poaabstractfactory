@@ -28,6 +28,7 @@ public class AbstractFileTest {
     @Test
     public void maintest() {
         try {
+            //Tests with Ordinary file
             AbstractFileFactory factory = FileFactory.getFactory("Linux");
             File f1 = factory.createFile("f1.txt", "bob");
             assertEquals(factory.getName(f1), "f1.txt");
@@ -39,7 +40,27 @@ public class AbstractFileTest {
             assertTrue(factory.close(f1));
             assertTrue(factory.open(f1, File.OpenMode.APPEND.WRITE));
             assertTrue(factory.write(f1, "contenu"));
+            assertTrue(factory.close(f1));
             assertNull(factory.read(f1));
+            assertTrue(factory.open(f1, File.OpenMode.READ));
+            assertEquals(factory.read(f1), "contenu");
+            assertEquals(factory.size(f1), 7);
+            assertTrue(factory.close(f1));
+
+            File f2 = factory.createFile("f2.txt", "Beta");
+            assertFalse(factory.write(f1, f2));
+
+            //TODO Tests with directory
+            File d1 = factory.createDirectory("d1", "Alpha");
+            assertTrue(factory.open(d1, File.OpenMode.APPEND));
+            assertTrue(factory.write(d1, f1));
+            assertTrue(factory.close(d1));
+
+            File d2 = factory.createDirectory("d2", "Gamma");
+            assertTrue(factory.write(d1, d2));
+
+            assertTrue(factory.open(d2, File.OpenMode.WRITE));
+
         } catch (Exception e) {
             e.printStackTrace();
         }
