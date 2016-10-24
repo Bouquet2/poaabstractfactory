@@ -6,7 +6,7 @@ package fr.paris10.poa.td4.filesystem;
 public class LinuxDirectory extends Directory {
     static String root = "/";
 
-    public LinuxDirectory(String name, String username) {
+    LinuxDirectory(String name, String username) {
         super(name, username);
     }
 }

@@ -5,7 +5,7 @@ package fr.paris10.poa.td4.filesystem;
  */
 public class WinOrdinaryFile extends OrdinaryFile {
 
-    public WinOrdinaryFile(String name, String username) {
+    WinOrdinaryFile(String name, String username) {
         super(name, username);
     }
 

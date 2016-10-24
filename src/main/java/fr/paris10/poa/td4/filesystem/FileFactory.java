@@ -7,6 +7,7 @@ public class FileFactory {
     static AbstractFileFactory instance = null;
 
     public static AbstractFileFactory getFactory() throws Exception {
+        //TODO "Unknown os version" trouver une solution fonctionnelle
         if (instance != null) {
             return instance;
         }

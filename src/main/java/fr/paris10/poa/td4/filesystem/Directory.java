@@ -26,7 +26,7 @@ public class Directory extends AbstractFile {
 
     private Map<Integer, File> contents;
 
-    public Directory(String name, String username) {
+    Directory(String name, String username) {
         super(name, username);
         this.contents = new HashMap<>();
     }
@@ -39,11 +39,11 @@ public class Directory extends AbstractFile {
         return contents.remove(f.getId());
     }
 
-    public File getById(Integer fileId) {
+    File getById(Integer fileId) {
         return contents.get(fileId);
     }
 
-    public File getByName(String fileName) {
+    File getByName(String fileName) {
         return contents.values().stream()
                 .filter(f -> f.getName().equals(fileName))
                 .findAny()
@@ -60,7 +60,7 @@ public class Directory extends AbstractFile {
     }
 
     @Override
-    public String read() {
+    String read() {
         if (getMode() == OpenMode.READ) {
             return contents.values().stream()
                     .map(f -> f.toString())
@@ -71,7 +71,7 @@ public class Directory extends AbstractFile {
     }
 
     @Override
-    public boolean write(String content) {
+    boolean write(String content) {
         if (getMode() == OpenMode.WRITE) {
             contents.clear();
             File file = new OrdinaryFile(content, getUser().getUid());
@@ -87,7 +87,7 @@ public class Directory extends AbstractFile {
     }
 
     @Override
-    public int size() {
+    int size() {
         return contents.size();
     }
 }

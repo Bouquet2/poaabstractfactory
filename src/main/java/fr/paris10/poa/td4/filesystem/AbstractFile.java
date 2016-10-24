@@ -18,7 +18,7 @@ package fr.paris10.poa.td4.filesystem;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public abstract class AbstractFile implements File {
+public abstract class AbstractFile extends File {
 
     private static UserRegistry registry = new UserRegistry();
     private static int nextId = 0;
@@ -29,7 +29,7 @@ public abstract class AbstractFile implements File {
     private OpenMode mode;
     private boolean open;
 
-    public AbstractFile(String name, String username) {
+    AbstractFile(String name, String username) {
         this.id = nextId++;
         this.name = name;
         this.mode = null;
@@ -58,27 +58,27 @@ public abstract class AbstractFile implements File {
     }
 
     @Override
-    public int getId() {
+    int getId() {
         return id;
     }
 
     @Override
-    public String getName() {
+    String getName() {
         return name;
     }
 
     @Override
-    public UserRegistry.User getUser() {
+    UserRegistry.User getUser() {
         return user;
     }
 
     @Override
-    public OpenMode getMode() {
+    OpenMode getMode() {
         return mode;
     }
 
     @Override
-    public boolean open(OpenMode mode) {
+    boolean open(OpenMode mode) {
         if (!open) {
             this.open = true;
             this.mode = mode;
@@ -89,7 +89,7 @@ public abstract class AbstractFile implements File {
     }
 
     @Override
-    public boolean close() {
+    boolean close() {
         if (open) {
             this.open = false;
             this.mode = null;
@@ -100,7 +100,7 @@ public abstract class AbstractFile implements File {
     }
 
     @Override
-    public void rename(String name) {
+    void rename(String name) {
         this.name = name;
     }
 

@@ -22,7 +22,7 @@ public class OrdinaryFile extends AbstractFile {
 
     private StringBuffer contents;
 
-    public OrdinaryFile(String name, String username) {
+    OrdinaryFile(String name, String username) {
         super(name, username);
         this.contents = new StringBuffer();
     }
@@ -33,7 +33,7 @@ public class OrdinaryFile extends AbstractFile {
     }
 
     @Override
-    public String read() {
+    String read() {
         if (getMode() == OpenMode.READ) {
             return contents.toString();
         } else {
@@ -42,7 +42,7 @@ public class OrdinaryFile extends AbstractFile {
     }
 
     @Override
-    public boolean write(String content) {
+    boolean write(String content) {
         if (getMode() == OpenMode.WRITE) {
             this.contents = new StringBuffer(content);
             return true;
@@ -55,7 +55,7 @@ public class OrdinaryFile extends AbstractFile {
     }
 
     @Override
-    public int size() {
+    int size() {
         return contents.length();
     }
 }

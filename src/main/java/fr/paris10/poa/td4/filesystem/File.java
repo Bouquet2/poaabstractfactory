@@ -18,7 +18,8 @@ package fr.paris10.poa.td4.filesystem;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public interface File {
+public abstract class File {
+    //TODO add directory or existing file into existing directory
 
     public enum OpenMode {
         READ(), WRITE(), APPEND();
@@ -27,25 +28,23 @@ public interface File {
         }
     }
 
-    int getId();
+    abstract int getId();
 
-    String getName();
+    abstract String getName();
 
-    UserRegistry.User getUser();
+    abstract UserRegistry.User getUser();
 
-    OpenMode getMode();
+    abstract OpenMode getMode();
 
-    boolean open(OpenMode mode);
+    abstract boolean open(OpenMode mode);
 
-    boolean close();
+    abstract boolean close();
 
-    void rename(String name);
+    abstract void rename(String name);
 
-    String read();
+    abstract String read();
 
-    boolean write(String content);
+    abstract boolean write(String content);
 
-    int size();
-
-
+    abstract int size();
 }

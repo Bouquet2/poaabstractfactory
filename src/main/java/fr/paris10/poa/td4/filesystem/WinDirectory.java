@@ -6,7 +6,7 @@ package fr.paris10.poa.td4.filesystem;
 public class WinDirectory extends Directory {
     static String root = "C:/";
 
-    public WinDirectory(String name, String username) {
+    WinDirectory(String name, String username) {
         super(name, username);
     }
 }
