@@ -90,4 +90,18 @@ public class Directory extends AbstractFile {
     int size() {
         return contents.size();
     }
+
+    @Override
+    boolean write(File file) {
+        if (getMode() == OpenMode.WRITE) {
+            contents.clear();
+            add(file);
+            return true;
+        } else if (getMode() == OpenMode.APPEND) {
+            add(file);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

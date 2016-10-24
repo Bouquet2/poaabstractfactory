@@ -19,6 +19,8 @@ public interface AbstractFileFactory {
 
     boolean write(File file, String content);
 
+    boolean write(File directory, File file);
+
     String getName(File file);
 
     int getId(File file);

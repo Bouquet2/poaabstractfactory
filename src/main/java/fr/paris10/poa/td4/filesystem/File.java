@@ -46,5 +46,7 @@ public abstract class File {
 
     abstract boolean write(String content);
 
+    abstract boolean write(File file);
+
     abstract int size();
 }

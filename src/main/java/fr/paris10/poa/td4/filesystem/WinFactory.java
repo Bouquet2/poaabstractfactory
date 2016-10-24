@@ -67,4 +67,9 @@ public class WinFactory implements AbstractFileFactory {
     public File.OpenMode getMode(File file) {
         return file.getMode();
     }
+
+    @Override
+    public boolean write(File directory, File file) {
+        return directory.write(file);
+    }
 }

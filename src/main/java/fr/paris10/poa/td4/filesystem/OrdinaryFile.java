@@ -58,4 +58,9 @@ public class OrdinaryFile extends AbstractFile {
     int size() {
         return contents.length();
     }
+
+    @Override
+    boolean write(File file) {
+        return false;
+    }
 }
